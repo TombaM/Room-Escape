@@ -10,23 +10,14 @@ class RoomOne(LoadImage):
     self.desk = LoadImage("Images/desk.png", [800, 520], 500, 250)
     self.picture = LoadImage("Images/picture.png", [780, 200], 300, 150)
 
-  def drawBookshelf(self):
-    self.image.blit(self.shelf.image, self.shelf.rect)
+  def drawObject(self, obj):
+      self.image.blit(obj.image, obj.rect)
 
-  def drawArmchair(self):
-    self.image.blit(self.armchair.image, self.armchair.rect)
-
-  def drawDesk(self):
-    self.image.blit(self.desk.image, self.desk.rect)
-
-  def drawPicture(self):
-    self.image.blit(self.picture.image, self.picture.rect)
-
-  def drawRoom(self):
-    self.drawBookshelf()
-    self.drawArmchair()
-    self.drawDesk()
-    self.drawPicture()
+  def drawRoom(self):      
+    self.drawObject(self.shelf)
+    self.drawObject(self.armchair)
+    self.drawObject(self.desk)
+    self.drawObject(self.picture)
 
 class RoomTwo(LoadImage):
   def __init__(self, image, location):

@@ -1,6 +1,6 @@
 import pygame
 import globalVariables as gv
-from picture import Picture
+from loadImage import LoadImage
 
 def blit_alpha(target,source,location):
     x = location[0]
@@ -36,12 +36,12 @@ def update():
     gv.rooms[gv.index].drawRoom()
     blit_alpha(gv.window, gv.leftArrow.image, gv.leftArrow.rect)
     blit_alpha(gv.window, gv.rightArrow.image, gv.rightArrow.rect)
-    
+
     if gv.flag == True:
         s = pygame.Surface((1200,700), pygame.SRCALPHA)
         s.fill((0,0,0,180))
         gv.window.blit(s, (0,0))
-        pic = Picture("Images/picture.png", [600, 350])
+        pic = LoadImage("Images/picture.png", [600, 350], 300, 150)
         pic.image = pygame.transform.scale(pic.image, (600, 500))
         pic.rect = pic.image.get_rect()
         pic.rect.center = (600, 350)

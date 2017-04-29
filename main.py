@@ -1,7 +1,5 @@
 import pygame
-from arrow import Arrow
 from room import *
-from close import Close
 
 import functions as f
 import globalVariables as gv

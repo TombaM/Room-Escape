@@ -36,12 +36,48 @@ def update():
     gv.rooms[gv.index].drawRoom()
     blit_alpha(gv.window, gv.leftArrow.image, gv.leftArrow.rect)
     blit_alpha(gv.window, gv.rightArrow.image, gv.rightArrow.rect)
+    gv.window.blit(gv.invertory.image, gv.invertory.rect)
 
-    if gv.flag == True:
+    if gv.flagInvertory == True:
+        print "mamara"
+        gv.invBar[0].drawInvertory()
+        # ib = invertory("Images/room1.jpg", [600, 350])
+        # gv.window.blit(invertoryBar.image, invertoryBar.rect)
+        # gv.close.rect = gv.close.image.get_rect()
+        # gv.close.rect.center = [1165, 642.5]
+        # gv.window.blit(gv.close.image, gv.close.rect)
+
+    if gv.flagPicture == True:
         s = pygame.Surface((1200,700), pygame.SRCALPHA)
         s.fill((0,0,0,180))
         gv.window.blit(s, (0,0))
         pic = LoadImage("Images/picture.png", [600, 350], 300, 150)
+        pic.image = pygame.transform.scale(pic.image, (600, 500))
+        pic.rect = pic.image.get_rect()
+        pic.rect.center = (600, 350)
+        gv.window.blit(pic.image, pic.rect)
+        gv.close.rect = gv.close.image.get_rect()
+        gv.close.rect.center = pic.rect.topright
+        gv.window.blit(gv.close.image, gv.close.rect)
+
+    elif gv.flagMessage == True:
+        s = pygame.Surface((1200,700), pygame.SRCALPHA)
+        s.fill((0,0,0,180))
+        gv.window.blit(s, (0,0))
+        pic = LoadImage("Images/message-empty.png", [600, 350], 300, 150)
+        pic.image = pygame.transform.scale(pic.image, (600, 500))
+        pic.rect = pic.image.get_rect()
+        pic.rect.center = (600, 350)
+        gv.window.blit(pic.image, pic.rect)
+        gv.close.rect = gv.close.image.get_rect()
+        gv.close.rect.center = pic.rect.topright
+        gv.window.blit(gv.close.image, gv.close.rect)
+
+    elif gv.flagPictureSafe == True:
+        s = pygame.Surface((1200,700), pygame.SRCALPHA)
+        s.fill((0,0,0,180))
+        gv.window.blit(s, (0,0))
+        pic = LoadImage("Images/pictureSafe.png", [600, 350], 300, 150)
         pic.image = pygame.transform.scale(pic.image, (600, 500))
         pic.rect = pic.image.get_rect()
         pic.rect.center = (600, 350)

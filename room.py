@@ -1,5 +1,6 @@
 import pygame
 from loadImage import LoadImage
+import globalVariables as gv
 
 class RoomOne(LoadImage):
   def __init__(self, image, location):
@@ -7,14 +8,19 @@ class RoomOne(LoadImage):
 
     self.shelf = LoadImage("Images/bookshelf.png", [250, 200], 300, 180)
     self.armchair = LoadImage("Images/armchair.png", [250, 500], 350, 300)
-    self.desk = LoadImage("Images/desk.png", [800, 520], 500, 250)
+    self.desk = LoadImage("Images/desk.png", [800, 510], 500, 230)
     self.picture = LoadImage("Images/picture.png", [780, 200], 300, 150)
+    self.counter = 0
 
   def drawObject(self, obj):
       self.image.blit(obj.image, obj.rect)
 
   def drawRoom(self):
     self.drawObject(self.shelf)
+    self.counter = self.counter + 1
+    print self.counter
+    if gv.flagPaper == False:
+      self.drawObject(gv.paper)
     self.drawObject(self.armchair)
     self.drawObject(self.desk)
     self.drawObject(self.picture)
@@ -23,8 +29,23 @@ class RoomTwo(LoadImage):
   def __init__(self, image, location):
     LoadImage.__init__(self, image, location, 1200, 700)
 
+    self.piano = LoadImage("Images/piano.png", [900, 540], 400, 300)
+    self.lamp = LoadImage("Images/lamp.png", [640, 490], 250, 380)
+    self.clock = LoadImage("Images/clock.png", [200, 410], 200, 580)
+    self.notebook = LoadImage("Images/notebook.png", [900, 420], 60, 70)
+    self.safe = LoadImage("Images/safe.png", [895, 200], 130, 100)
+    self.pictureSafe = LoadImage("Images/pictureSafe.png", [905, 212.5], 250, 175)
+
+  def drawObject(self, obj):
+      self.image.blit(obj.image, obj.rect)
+
   def drawRoom(self):
-    return
+    self.drawObject(self.piano)
+    self.drawObject(self.lamp)
+    self.drawObject(self.clock)
+    self.drawObject(self.notebook)
+    self.drawObject(self.safe)
+    self.drawObject(self.pictureSafe)
 
 class RoomThree(LoadImage):
   def __init__(self, image, location):

@@ -10,20 +10,22 @@ class RoomOne(LoadImage):
     self.armchair = LoadImage("Images/armchair.png", [250, 500], 350, 300)
     self.desk = LoadImage("Images/desk.png", [800, 510], 500, 230)
     self.picture = LoadImage("Images/picture.png", [780, 200], 300, 150)
-    self.counter = 0
+    if gv.flags['paper'] == False:
+        self.paper = LoadImage("Images/paper.png", [360, 580], 25, 25)
+    self.candle = LoadImage("Images/candle.png", [630, 360], 100, 100)
 
   def drawObject(self, obj):
       self.image.blit(obj.image, obj.rect)
 
   def drawRoom(self):
     self.drawObject(self.shelf)
-    self.counter = self.counter + 1
-    print self.counter
-    if gv.flagPaper == False:
-      self.drawObject(gv.paper)
+    print gv.items.keys()
+    if gv.flags['paper'] == False:
+        self.drawObject(self.paper)
     self.drawObject(self.armchair)
     self.drawObject(self.desk)
     self.drawObject(self.picture)
+    self.drawObject(self.candle)
 
 class RoomTwo(LoadImage):
   def __init__(self, image, location):
@@ -63,6 +65,7 @@ class RoomThree(LoadImage):
 
   def drawObject(self, obj):
       self.image.blit(obj.image, obj.rect)
+
   def drawRoom(self):
       self.drawObject(self.ham)
       self.drawObject(self.chest)

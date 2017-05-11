@@ -10,9 +10,9 @@ pygame.init()
 pygame.display.set_caption('Escape room')
 
 
-room = RoomTwo("Images/room2.jpg", [600, 350])
-gv.rooms.append(room)
 room = RoomOne("Images/room1.jpg", [600, 350])
+gv.rooms.append(room)
+room = RoomTwo("Images/room2.jpg", [600, 350])
 gv.rooms.append(room)
 room = RoomThree("Images/room3.jpg", [600, 350])
 gv.rooms.append(room)
@@ -38,21 +38,20 @@ while running:
                 f.changeBackground("right")
             elif gv.leftArrow.rect.collidepoint(pos):
                 f.changeBackground("left")
-            elif gv.rooms[1].picture.rect.collidepoint(pos):
-                gv.flagPicture = True
-            elif gv.rooms[0].pictureSafe.rect.collidepoint(pos):
-                gv.flagPictureSafe = True
-            elif gv.paper.rect.collidepoint(pos):
-                # gv.invBar[0].addItem(paper)
-                # gv.flagPaper = True
-                gv.flagMessage = True
-                print gv.flagPaper
+            elif gv.rooms[0].picture.rect.collidepoint(pos) and gv.index == 0:
+                gv.flags['picture'] = True
+            elif gv.rooms[1].pictureSafe.rect.collidepoint(pos) and gv.index == 0:
+                gv.flags['pictureSafe'] = True
+            elif gv.rooms[0].paper.rect.collidepoint(pos) and gv.index == 0:
+                gv.items.update({'paper':True})
+                gv.flags['paper'] = True
+                gv.flags['message'] = True
             elif gv.invertory.rect.collidepoint(pos):
-                gv.flagInvertory = True
+                gv.flags['invertory'] = True
             elif gv.close.rect.collidepoint(pos):
-                gv.flagPicture = False
-                gv.flagMessage = False
-                gv.flagInvertory = False
+                gv.flags['picture'] = False
+                gv.flags['message'] = False
+                gv.flags['invertory'] = False
 
 
     f.opacity()

@@ -1,7 +1,7 @@
 import pygame
 from room import *
 from invertory import *
-
+import copy
 
 import functions as f
 import globalVariables as gv
@@ -38,11 +38,11 @@ while running:
                 f.changeBackground("right")
             elif gv.leftArrow.rect.collidepoint(pos):
                 f.changeBackground("left")
-            elif gv.rooms[0].picture.rect.collidepoint(pos):
+            elif gv.rooms[0].picture.rect.collidepoint(pos) and gv.index==0:
                 gv.flags['picture'] = True
-            elif gv.rooms[1].pictureSafe.rect.collidepoint(pos):
+            elif gv.rooms[1].pictureSafe.rect.collidepoint(pos) and gv.index==1:
                 gv.flags['pictureSafe'] = True
-            elif gv.rooms[0].paper.rect.collidepoint(pos):
+            elif gv.rooms[0].paper.rect.collidepoint(pos) and gv.index==0:
                 gv.flags['paper'] = False
                 gv.paper.setLocation([100+gv.invIndex*190,645])
                 gv.invertoryItems.append(gv.paper)
@@ -58,7 +58,7 @@ while running:
                 gv.flags['picture'] = False
                 gv.flags['invertory'] = False
                 gv.flags['message'] = False
-
+                gv.flags['pictureSafe'] = False
 
     f.opacity()
     f.update()

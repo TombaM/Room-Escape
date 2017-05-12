@@ -1,4 +1,5 @@
 import pygame
+import copy
 import globalVariables as gv
 from loadImage import LoadImage
 
@@ -55,7 +56,7 @@ def zoomImage(imageSource):
 def update():
     gv.window.blit(gv.rooms[gv.index].image, gv.rooms[gv.index].rect)
     gv.rooms[gv.index].drawRoom()
-
+    
     # blitting arrows with opacity for every room
     blit_alpha(gv.window, gv.leftArrow.image, gv.leftArrow.rect)
     blit_alpha(gv.window, gv.rightArrow.image, gv.rightArrow.rect)

@@ -38,12 +38,11 @@ while running:
                 f.changeBackground("right")
             elif gv.leftArrow.rect.collidepoint(pos):
                 f.changeBackground("left")
-            elif gv.rooms[0].picture.rect.collidepoint(pos) and gv.index == 0:
+            elif gv.rooms[0].picture.rect.collidepoint(pos):
                 gv.flags['picture'] = True
-            elif gv.rooms[1].pictureSafe.rect.collidepoint(pos) and gv.index == 0:
+            elif gv.rooms[1].pictureSafe.rect.collidepoint(pos):
                 gv.flags['pictureSafe'] = True
-            elif gv.rooms[0].paper.rect.collidepoint(pos) and gv.index == 0:
-                # gv.items.update({'paper':True})
+            elif gv.rooms[0].paper.rect.collidepoint(pos):
                 gv.flags['paper'] = False
                 gv.paper.setLocation([100+gv.invIndex*190,645])
                 gv.invertoryItems.append(gv.paper)
@@ -51,12 +50,14 @@ while running:
                 gv.candle.setLocation([100+gv.invIndex*190,645])
                 gv.invertoryItems.append(gv.candle)
                 gv.invIndex = gv.invIndex + 1
-                # gv.flags['message'] = True
+            elif gv.paper.rect.collidepoint(pos):
+                gv.flags['message'] = True
             elif gv.invertory.rect.collidepoint(pos):
                 gv.flags['invertory'] = True
             elif gv.close.rect.collidepoint(pos):
                 gv.flags['picture'] = False
                 gv.flags['invertory'] = False
+                gv.flags['message'] = False
 
 
     f.opacity()

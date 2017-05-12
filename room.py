@@ -2,6 +2,16 @@ import pygame
 from loadImage import LoadImage
 import globalVariables as gv
 
+def blit_alpha(target,source,location):
+  x = location[0]
+  y = location[1]
+  temp = pygame.Surface((source.get_width(), source.get_height())).convert()
+  temp.blit(target, (-x,-y))
+  temp.blit(source, (0,0))
+  temp.set_alpha(gv.opacity_paper)
+  target.blit(temp, location)
+
+
 class RoomOne(LoadImage):
   def __init__(self, image, location):
     LoadImage.__init__(self, image, location, 1200, 700)
@@ -10,19 +20,17 @@ class RoomOne(LoadImage):
     self.armchair = LoadImage("Images/armchair.png", [250, 500], 350, 300)
     self.desk = LoadImage("Images/desk.png", [800, 510], 500, 230)
     self.picture = LoadImage("Images/picture.png", [780, 200], 300, 150)
-    if gv.flags['paper'] == False:
-        self.paper = LoadImage("Images/paper.png", [360, 580], 25, 25)
+    self.paper = LoadImage("Images/paper.png", [360, 580], 25, 25)
     self.candle = LoadImage("Images/candle.png", [630, 360], 100, 100)
 
   def drawObject(self, obj):
       self.image.blit(obj.image, obj.rect)
 
   def drawRoom(self):
-    self.drawObject(self.shelf)
-    print gv.items.keys()
-    if gv.flags['paper'] == False:
-        self.drawObject(self.paper)
+    blit_alpha(gv.window, self.paper.image, self.paper.rect)
+    blit_alpha(gv.window, self.armchair.image, self.armchair.rect)
     self.drawObject(self.armchair)
+    self.drawObject(self.shelf)
     self.drawObject(self.desk)
     self.drawObject(self.picture)
     self.drawObject(self.candle)

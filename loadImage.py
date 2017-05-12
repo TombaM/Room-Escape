@@ -9,3 +9,6 @@ class LoadImage(pygame.sprite.Sprite):
 
       self.rect = self.image.get_rect()
       self.rect.center = location
+
+    def setLocation(self,location):
+      self.rect.center = location

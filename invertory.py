@@ -13,7 +13,6 @@ class Invertory(LoadImage):
     #
     # self.rect = self.image.get_rect()
     # self.rect.center = location
-    self.index=0
 
   def addItem(self):
     index = index + 1
@@ -26,4 +25,8 @@ class Invertory(LoadImage):
     gv.close.rect = gv.close.image.get_rect()
     gv.close.rect.center = [1165, 642.5]
     gv.window.blit(gv.close.image, gv.close.rect)
+    i = 0
+    while i < gv.invIndex:
+        gv.window.blit(gv.invertoryItems[i].image, gv.invertoryItems[i].rect)
+        i = i + 1
     # if gv.flagPaper==True:

@@ -43,14 +43,19 @@ while running:
             elif gv.rooms[1].pictureSafe.rect.collidepoint(pos) and gv.index == 0:
                 gv.flags['pictureSafe'] = True
             elif gv.rooms[0].paper.rect.collidepoint(pos) and gv.index == 0:
-                gv.items.update({'paper':True})
-                gv.flags['paper'] = True
-                gv.flags['message'] = True
+                # gv.items.update({'paper':True})
+                gv.flags['paper'] = False
+                gv.paper.setLocation([100+gv.invIndex*190,645])
+                gv.invertoryItems.append(gv.paper)
+                gv.invIndex = gv.invIndex + 1
+                gv.candle.setLocation([100+gv.invIndex*190,645])
+                gv.invertoryItems.append(gv.candle)
+                gv.invIndex = gv.invIndex + 1
+                # gv.flags['message'] = True
             elif gv.invertory.rect.collidepoint(pos):
                 gv.flags['invertory'] = True
             elif gv.close.rect.collidepoint(pos):
                 gv.flags['picture'] = False
-                gv.flags['message'] = False
                 gv.flags['invertory'] = False
 
 

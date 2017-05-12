@@ -18,6 +18,10 @@ def opacity():
         gv._opacity = 255
     else:
         gv._opacity = 30
+    if gv.flags['paper']==True:
+        gv.opacity_paper=255
+    else:
+        gv.opacity_paper=0
 
 def changeBackground(side):
     if side == "left":
@@ -55,6 +59,7 @@ def update():
     # blitting arrows with opacity for every room
     blit_alpha(gv.window, gv.leftArrow.image, gv.leftArrow.rect)
     blit_alpha(gv.window, gv.rightArrow.image, gv.rightArrow.rect)
+
 
     # drawing invertory icon for every room
     gv.window.blit(gv.invertory.image, gv.invertory.rect)

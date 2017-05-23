@@ -2,6 +2,7 @@ import pygame
 import copy
 import globalVariables as gv
 from loadImage import LoadImage
+import room
 
 def blit_alpha(target,source,location):
     x = location[0]
@@ -19,10 +20,21 @@ def opacity():
         gv._opacity = 255
     else:
         gv._opacity = 30
+
     if gv.flags['paper']==True:
         gv.opacity_paper=255
     else:
         gv.opacity_paper=0
+
+    if gv.flags['hammer']==True:
+        gv.opacity_hammer=255
+    else:
+        gv.opacity_hammer=0
+
+    if gv.flags['lemon']==True:
+        gv.opacity_lemon=255
+    else:
+        gv.opacity_lemon=0
 
 def changeBackground(side):
     if side == "left":
@@ -42,7 +54,7 @@ def zoomImage(imageSource):
     s.fill((0,0,0,180))
     gv.window.blit(s, (0,0))
 
-    pic = LoadImage(imageSource, [600, 350], 300, 150)
+    pic = LoadImage(imageSource, [600, 350], 300, 150, 0)
     pic.image = pygame.transform.scale(pic.image, (600, 500))
     pic.rect = pic.image.get_rect()
     pic.rect.center = (600, 350)
@@ -56,7 +68,7 @@ def zoomImage(imageSource):
 def update():
     gv.window.blit(gv.rooms[gv.index].image, gv.rooms[gv.index].rect)
     gv.rooms[gv.index].drawRoom()
-    
+
     # blitting arrows with opacity for every room
     blit_alpha(gv.window, gv.leftArrow.image, gv.leftArrow.rect)
     blit_alpha(gv.window, gv.rightArrow.image, gv.rightArrow.rect)
@@ -76,5 +88,12 @@ def update():
 
     elif gv.flags['pictureSafe'] == True:
         zoomImage("Images/pictureSafe.png")
+
+    elif gv.flags['fridge'] == True:
+        zoomImage("Images/fridge.png")
+        room.blit_alpha(gv.window, gv.lemon.image, gv.lemon.rect,gv.opacity_lemon)
+
+    elif gv.flags['safe'] == True:
+        zoomImage("Images/safe.png")
 
     pygame.display.update()

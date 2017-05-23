@@ -5,7 +5,7 @@ import globalVariables as gv
 class Invertory(LoadImage):
 
   def __init__(self, image, location):
-    LoadImage.__init__(self, image, location, 1200, 115)
+    LoadImage.__init__(self, image, location, 1200, 115, 0)
     # pygame.sprite.Sprite.__init__(self)
     #
     # self.image = pygame.image.load(image)

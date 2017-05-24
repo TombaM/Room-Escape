@@ -76,8 +76,10 @@ while running:
             gv.lemon_inv.setLocation([mx,my])
             if event.type == pygame.MOUSEBUTTONUP:
                 gv.dragging_lemon=False
-                if mx>=380 and mx<=920 and my>=70 and my<=490 and gv.index==4 and gv.opacity_candle==0:
-                    gv.opacity_table_paper = 50
+                if mx>=380 and mx<=920 and my>=70 and my<=490 and gv.index==4 and gv.opacity_table_paper==255:
+                    gv.message_lemoned = True
+                    if gv.opacity_candle==0:
+                        gv.opacity_table_paper = 0
 
                 gv.lemon_inv.setLocation([100+(gv.lemon_index)*190,645])
 

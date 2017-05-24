@@ -112,6 +112,7 @@ class RoomDesk(LoadImage):
         self.candle_on = LoadImage("Images/candle_desk_on.png", [150, 120], 220, 170, 0)
         self.candle_off = LoadImage("Images/candle_desk_off.png", [150, 120], 220, 170, 0)
         self.message_empty = LoadImage("Images/message-empty.png", [600, 320], 400, 370, 0)
+        self.message = LoadImage("Images/message.png", [600, 320], 400, 370, 0)
 
     def drawObject(self, obj):
         self.image.blit(obj.image, obj.rect)
@@ -120,4 +121,5 @@ class RoomDesk(LoadImage):
         blit_alpha(gv.window, self.candle_off.image, self.candle_off.rect,gv.opacity_candle)
         blit_alpha(gv.window, self.candle_on.image, self.candle_on.rect,gv.opacity_light_candle)
         blit_alpha(gv.window, self.message_empty.image, self.message_empty.rect,gv.opacity_table_paper)
+        blit_alpha(gv.window, self.message.image, self.message.rect,gv.opacity_message)
         self.drawObject(self.close)

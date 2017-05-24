@@ -41,6 +41,11 @@ def opacity():
     else:
         gv.opacity_matches=0
 
+    if gv.message_lemoned==True and gv.opacity_candle==0:
+        gv.opacity_message=255
+    else:
+        gv.opacity_message=0
+
 def changeBackground(side):
     if side == "left":
         if gv.index == 0:

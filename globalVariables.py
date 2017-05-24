@@ -13,6 +13,8 @@ opacity_paper = 255
 paper_on_table = False
 dragging_paper = False
 opacity_table_paper = 0
+opacity_message = 0
+message_lemoned = False
 paper_index = -1
 
 opacity_hammer = 255

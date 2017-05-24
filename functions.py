@@ -36,14 +36,19 @@ def opacity():
     else:
         gv.opacity_lemon=0
 
+    if gv.flags['matches']==True:
+        gv.opacity_matches=255
+    else:
+        gv.opacity_matches=0
+
 def changeBackground(side):
     if side == "left":
         if gv.index == 0:
-            gv.index = len(gv.rooms) - 1
+            gv.index = len(gv.rooms) - 2
         else:
             gv.index = gv.index - 1
     else:
-        if gv.index == len(gv.rooms) - 1:
+        if gv.index == len(gv.rooms) - 2:
             gv.index = 0
         else:
             gv.index = gv.index + 1
@@ -79,6 +84,12 @@ def update():
 
     if gv.flags["invertory"] == True:
         gv.invBar[0].drawInvertory()
+
+    if gv.dragging_match == True:
+        gv.window.blit(gv.match.image, gv.match.rect)
+
+    if gv.dragging_paper == True:
+        gv.window.blit(gv.table_paper.image, gv.table_paper.rect)
 
     if gv.flags['picture'] == True:
         zoomImage("Images/picture.png")

@@ -9,6 +9,10 @@ import globalVariables as gv
 pygame.init()
 pygame.display.set_caption('Escape room')
 
+music = "Music/backgroundMusic2.mp3"
+pygame.mixer.init()
+pygame.mixer.music.load(music)
+pygame.mixer.music.play(-1)
 
 room = RoomOne("Images/room1.jpg", [600, 350])
 gv.rooms.append(room)

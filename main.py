@@ -156,7 +156,7 @@ while running:
             elif gv.index==2 and event.type == pygame.MOUSEBUTTONUP:
                 pos = pygame.mouse.get_pos()
                 # hardcoded part, if we think of something better, will be implemented
-                if pos[0]>=230 and pos[0]<=300 and pos[1]>=220 and pos[1]<=330:
+                if pos[0]>=940 and pos[0]<=970 and pos[1]>=250 and pos[1]<=415:
                     gv.flags['fridge']=True
                     #drawing lemon before it is taken
                     if gv.lemon_ind == 0:

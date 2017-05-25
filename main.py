@@ -11,7 +11,18 @@ pygame.display.set_caption('Escape room')
 # music = "Music/backgroundMusic.mp3"
 # pygame.mixer.init()
 # pygame.mixer.music.load(music)
+# pygame.mixer.music.set_volume(0.3)
 # pygame.mixer.music.play(-1)
+
+#pravi se objekat za zvuk i ovo .play() se poziva kad se klikne na vrata
+#lockedDoorSound = pygame.mixer.Sound('Music/door_locked.ogg')
+#lockedDoorSound.play()
+# unlockingDoor = pygame.mixer.Sound('Music/unlock_door.ogg')
+# unlockingDoor.play()
+# pickUp = pygame.mixer.Sound('Music/pick_up.ogg')
+# pickUp.set_volume(1)
+# pickUp.play()
+
 
 room = RoomOne("Images/room1.jpg", [600, 350])
 gv.rooms.append(room)

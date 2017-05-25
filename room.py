@@ -123,3 +123,10 @@ class RoomDesk(LoadImage):
         blit_alpha(gv.window, self.message_empty.image, self.message_empty.rect,gv.opacity_table_paper)
         blit_alpha(gv.window, self.message.image, self.message.rect,gv.opacity_message)
         self.drawObject(self.close)
+
+class RoomStart(LoadImage):
+    def __init__(self, image, location):
+        LoadImage.__init__(self, image, location, 1200, 700, 0)
+
+    def drawRoom(self):
+        return 

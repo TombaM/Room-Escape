@@ -1,4 +1,5 @@
-import pygame
+import pygame, pygame.font, pygame.event, pygame.draw, string
+from pygame.locals import *
 import copy
 import globalVariables as gv
 from loadImage import LoadImage
@@ -12,6 +13,50 @@ def blit_alpha(target,source,location):
     temp.blit(source, (0,0))
     temp.set_alpha(gv._opacity)
     target.blit(temp, location)
+
+# def get_key():
+#   while 1:
+#     event = pygame.event.poll()
+#     if event.type == KEYDOWN:
+#       return event.key
+#     else:
+#       pass
+
+def display_box(message,password):
+    fontobject = pygame.font.Font(None,22)
+    fontobjectpass = pygame.font.Font(None,25)
+
+    pygame.draw.rect(gv.window, (0,0,0),
+                   ((gv.window.get_width() / 2) - 175,
+                    (gv.window.get_height() / 2) - 10,
+                    350,50), 0)
+    pygame.draw.rect(gv.window, (255,255,255),
+                   ((gv.window.get_width() / 2) - 177,
+                    (gv.window.get_height() / 2) - 12,
+                    354,54), 1)
+    if len(message) != 0:
+        gv.window.blit(fontobject.render(message, 1, (255,255,255)),
+        ((gv.window.get_width() / 2) - 175, (gv.window.get_height() / 2) - 10))
+        gv.window.blit(fontobjectpass.render(password, 1, (255,255,255)),
+        ((gv.window.get_width() / 2) - 175, (gv.window.get_height() / 2) + 15))
+
+def ask(question):
+#   "ask(screen, question) -> answer"
+  pygame.font.init()
+  display_box(question + ":",''.join(gv.password))
+  inkey = gv.key
+  if inkey == K_BACKSPACE:
+      gv.password = gv.password[0:-1]
+      gv.key=-1
+  elif inkey == pygame.K_RETURN:
+    #   gv.key=-1
+      pom=gv.password
+      gv.password=[]
+      return string.join(pom,"")
+  elif inkey <= 127 and inkey > 0:
+      gv.password.append(chr(inkey))
+      gv.key=-1
+
 
 def opacity():
     if gv.leftArrow.rect.collidepoint(pygame.mouse.get_pos()):
@@ -79,7 +124,8 @@ def update():
     gv.window.blit(gv.rooms[gv.index].image, gv.rooms[gv.index].rect)
     gv.rooms[gv.index].drawRoom()
 
-    # blitting arrows with opacity for every room
+    # if gv.game_started == True:
+        # blitting arrows with opacity for every room
     blit_alpha(gv.window, gv.leftArrow.image, gv.leftArrow.rect)
     blit_alpha(gv.window, gv.rightArrow.image, gv.rightArrow.rect)
 
@@ -110,6 +156,14 @@ def update():
         room.blit_alpha(gv.window, gv.lemon.image, gv.lemon.rect,gv.opacity_lemon)
 
     elif gv.flags['safe'] == True:
-        zoomImage("Images/safe.png")
-
+        if gv.safe_open == False:
+            zoomImage("Images/safe.png")
+            pom=ask("Type safe password and press enter")
+            if gv.key == K_RETURN:
+                if pom=="4295" or pom=="4 2 9 5":
+                    gv.safe_open = True
+                gv.key=-1
+        else:
+            zoomImage("Images/safe_inside.png")
+            gv.window.blit(gv.key_pic.image, gv.key_pic.rect)
     pygame.display.update()

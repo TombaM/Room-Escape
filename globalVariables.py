@@ -31,6 +31,7 @@ opacity_rotated = 0
 
 safe_visible = False
 safe_ind = 0
+safe_open = False
 
 opacity_candle = 255
 opacity_light_candle = 0
@@ -38,6 +39,11 @@ opacity_light_candle = 0
 opacity_matches = 255
 matches_index = -1
 dragging_match = False
+
+key = -1
+password=[]
+
+game_started=False
 
 flags = {'picture' : False,
          'paper' : True,
@@ -67,4 +73,5 @@ match = LoadImage("Images/match.png", [1800, 645], 30, 30, 0)
 lemon_inv = LoadImage("Images/lemon.png", [1800, 645], 75, 75, 0)
 lemon = LoadImage("Images/lemon.png", [705, 420], 80, 70, 0)
 rotated = LoadImage("Images/pictureSafe.png", [1005, 515], 250, 175, -40)
+key_pic = LoadImage("Images/key.png", [530, 400], 50, 130, 0)
 #100, 290, 480, 670, 860

@@ -1,7 +1,6 @@
 import pygame
 from room import *
 from invertory import *
-import copy
 
 import functions as f
 import globalVariables as gv
@@ -9,10 +8,10 @@ import globalVariables as gv
 pygame.init()
 pygame.display.set_caption('Escape room')
 
-music = "Music/backgroundMusic2.mp3"
-pygame.mixer.init()
-pygame.mixer.music.load(music)
-pygame.mixer.music.play(-1)
+# music = "Music/backgroundMusic.mp3"
+# pygame.mixer.init()
+# pygame.mixer.music.load(music)
+# pygame.mixer.music.play(-1)
 
 room = RoomOne("Images/room1.jpg", [600, 350])
 gv.rooms.append(room)
@@ -25,7 +24,6 @@ gv.rooms.append(room)
 room = RoomDesk("Images/desk_room.png", [600, 350])
 gv.rooms.append(room)
 
-
 invertoryBar = Invertory("Images/invertory.png", [600, 642.5])
 gv.invBar.append(invertoryBar)
 
@@ -35,15 +33,23 @@ pygame.display.flip()
 mx,my=pygame.mouse.get_pos()
 running = True
 while running:
+
     if gv.safe_visible == True:
         gv.safe_ind = 2
+
 
     for event in pygame.event.get():
         mx,my=pygame.mouse.get_pos()
         pos = pygame.mouse.get_pos()
         if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
             running = False
-
+        elif event.type == pygame.KEYDOWN:
+            gv.key=event.key
+        # if event.type == pygame.MOUSEBUTTONUP and gv.game_started == False:
+        #     if mx >= 140 and mx <= 680 and my >= 555 and my <= 625:
+        #         gv.game_started = True
+        #         room = RoomOne("Images/room1.jpg", [600, 350])
+        #         gv.rooms[0] = room
         #dragging_hammer hammer
         if gv.dragging_hammer == True:
             gv.hammer.setLocation([mx,my])
@@ -175,7 +181,7 @@ while running:
                     gv.invertoryItems.append(gv.lemon_inv)
                     gv.lemon_index = gv.invIndex
                     gv.invIndex = gv.invIndex + 1
-    f.opacity()
-    f.update()
-    gv.window.fill((255, 255, 255))
-    # print gv.index
+        f.opacity()
+        f.update()
+        gv.window.fill((255, 255, 255))
+        # print gv.index

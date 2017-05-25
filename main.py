@@ -136,7 +136,7 @@ while running:
                 if gv.safe_ind == 2:
                     gv.flags['safe'] = True
             #hammer taken
-            elif gv.rooms[4].hammer.rect.collidepoint(pos) and gv.index == 4:
+            elif gv.rooms[4].hammer.rect.collidepoint(pos) and gv.index == 4 and gv.flags['hammer'] == True:
                 gv.flags['hammer'] = False
                 gv.hammer.setLocation([100+gv.invIndex*190,645])
                 gv.invertoryItems.append(gv.hammer)
@@ -144,7 +144,7 @@ while running:
                 gv.invIndex = gv.invIndex + 1
                 item_taken()
             #matches taken
-            elif gv.rooms[4].matches.rect.collidepoint(pos) and gv.index == 4:
+            elif gv.rooms[4].matches.rect.collidepoint(pos) and gv.index == 4 and gv.flags['matches'] == True:
                 gv.flags['matches'] = False
                 gv.matches.setLocation([100+gv.invIndex*190,645])
                 gv.invertoryItems.append(gv.matches)
@@ -152,7 +152,7 @@ while running:
                 gv.invIndex = gv.invIndex + 1
                 item_taken()
             #paper taken
-            elif gv.rooms[0].paper.rect.collidepoint(pos) and gv.index == 0:
+            elif gv.rooms[0].paper.rect.collidepoint(pos) and gv.index == 0 and gv.flags['paper'] == True:
                 gv.flags['paper'] = False
                 gv.paper.setLocation([100+gv.invIndex*190,645])
                 gv.invertoryItems.append(gv.paper)
@@ -208,7 +208,7 @@ while running:
                     if gv.lemon_ind == 0:
                         gv.flags['lemon'] = True
                 #taking lemon, first and only time
-                if gv.lemon.rect.collidepoint(pos) and gv.index==2:
+                if gv.lemon.rect.collidepoint(pos) and gv.index==2 and gv.flags['lemon'] == True:
                     gv.flags['lemon']=False
                     gv.lemon_ind = 1
                     gv.lemon_inv.setLocation([100+gv.invIndex*190,645])
@@ -217,7 +217,7 @@ while running:
                     gv.invIndex = gv.invIndex + 1
                     item_taken()
             elif gv.index == 1 and event.type == pygame.MOUSEBUTTONUP:
-                if gv.key_pic.rect.collidepoint(pos) and gv.index==1 and gv.safe_open == True:
+                if gv.key_pic.rect.collidepoint(pos) and gv.index==1 and gv.safe_open == True and gv.flags['key'] == True:
                     gv.flags['key'] = False
                     gv.key_inv.setLocation([100+gv.invIndex*190,645])
                     gv.invertoryItems.append(gv.key_inv)

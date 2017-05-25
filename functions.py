@@ -131,8 +131,9 @@ def update():
 
     if gv.game_started == True:
         # blitting arrows with opacity for every room
-        blit_alpha(gv.window, gv.leftArrow.image, gv.leftArrow.rect,gv._opacity)
-        blit_alpha(gv.window, gv.rightArrow.image, gv.rightArrow.rect,gv._opacity)
+        if gv.index != 4 and gv.index != 5:
+            blit_alpha(gv.window, gv.leftArrow.image, gv.leftArrow.rect,gv._opacity)
+            blit_alpha(gv.window, gv.rightArrow.image, gv.rightArrow.rect,gv._opacity)
 
 
         # drawing invertory icon for every room

@@ -8,11 +8,11 @@ import globalVariables as gv
 pygame.init()
 pygame.display.set_caption('Escape room')
 
-# music = "Music/backgroundMusic.mp3"
-# pygame.mixer.init()
-# pygame.mixer.music.load(music)
-# pygame.mixer.music.set_volume(0.3)
-# pygame.mixer.music.play(-1)
+music = "Music/backgroundMusic.mp3"
+pygame.mixer.init()
+pygame.mixer.music.load(music)
+pygame.mixer.music.set_volume(0.3)
+pygame.mixer.music.play(-1)
 
 #pravi se objekat za zvuk i ovo .play() se poziva kad se klikne na vrata
 #lockedDoorSound = pygame.mixer.Sound('Music/door_locked.ogg')
@@ -107,6 +107,14 @@ while running:
 
                 gv.lemon_inv.setLocation([100+(gv.lemon_index)*190,645])
 
+        elif gv.dragging_key == True:
+            gv.key_inv.setLocation([mx,my])
+            if event.type == pygame.MOUSEBUTTONUP:
+                gv.dragging_key=False
+                if mx>=310 and mx<=330 and my>=285 and my<=340 and gv.index==3:
+                    print "WIN"
+
+                gv.matches.setLocation([100+(gv.matches_index)*190,645])
         # Cheking if picture is "pressed" so it should be zoomed
         elif gv.rooms[1].pictureSafe.rect.collidepoint(pos) and gv.index==1 and event.type == pygame.MOUSEBUTTONUP:
             #only if it is visible we should zoom
@@ -162,6 +170,9 @@ while running:
             elif gv.paper.rect.collidepoint(pos):
                 # gv.flags['message'] = True
                 gv.dragging_paper = True
+            elif gv.key_inv.rect.collidepoint(pos):
+                # gv.flags['message'] = True
+                gv.dragging_key = True
             #trying to check inventory
             elif gv.invertory.rect.collidepoint(pos):
                 gv.flags['invertory'] = True

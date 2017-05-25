@@ -46,6 +46,7 @@ password=[]
 game_started=False
 
 opacity_key = 255
+dragging_key = False
 
 flags = {'picture' : False,
          'paper' : True,

@@ -15,14 +15,11 @@ pygame.mixer.music.set_volume(0.3)
 pygame.mixer.music.play(-1)
 
 #pravi se objekat za zvuk i ovo .play() se poziva kad se klikne na vrata
-#lockedDoorSound = pygame.mixer.Sound('Music/door_locked.ogg')
-#lockedDoorSound.play()
-# unlockingDoor = pygame.mixer.Sound('Music/unlock_door.ogg')
-# unlockingDoor.play()
-# pickUp = pygame.mixer.Sound('Music/pick_up.ogg')
-# pickUp.set_volume(1)
-# pickUp.play()
 
+def item_taken():
+    pickUp = pygame.mixer.Sound('Music/pick_up.ogg')
+    pickUp.set_volume(1)
+    pickUp.play()
 
 room = RoomStart("Images/room_start.jpg", [600, 350])
 gv.rooms.append(room)
@@ -110,9 +107,10 @@ while running:
         elif gv.dragging_key == True:
             gv.key_inv.setLocation([mx,my])
             if event.type == pygame.MOUSEBUTTONUP:
-                gv.dragging_key=False
+                # gv.dragging_key=False
                 if mx>=310 and mx<=330 and my>=285 and my<=340 and gv.index==3:
-                    print "WIN"
+                    unlockingDoor = pygame.mixer.Sound('Music/unlock_door.ogg')
+                    unlockingDoor.play()
 
                 gv.matches.setLocation([100+(gv.matches_index)*190,645])
         # Cheking if picture is "pressed" so it should be zoomed
@@ -122,6 +120,9 @@ while running:
                 gv.flags['pictureSafe'] = True
 
         if event.type == pygame.MOUSEBUTTONUP and gv.game_started == True:
+            if mx>=310 and mx<=340 and my>=285 and my<=340 and gv.index==3 and gv.dragging_key == False:
+                lockedDoorSound = pygame.mixer.Sound('Music/door_locked.ogg')
+                lockedDoorSound.play()
 
             if gv.rightArrow.rect.collidepoint(pos) and gv.index != len(gv.rooms) - 2:
                 f.changeBackground("right")
@@ -141,6 +142,7 @@ while running:
                 gv.invertoryItems.append(gv.hammer)
                 gv.hammer_index=gv.invIndex
                 gv.invIndex = gv.invIndex + 1
+                item_taken()
             #matches taken
             elif gv.rooms[4].matches.rect.collidepoint(pos) and gv.index == 4:
                 gv.flags['matches'] = False
@@ -148,6 +150,7 @@ while running:
                 gv.invertoryItems.append(gv.matches)
                 gv.matches_index=gv.invIndex
                 gv.invIndex = gv.invIndex + 1
+                item_taken()
             #paper taken
             elif gv.rooms[0].paper.rect.collidepoint(pos) and gv.index == 0:
                 gv.flags['paper'] = False
@@ -155,6 +158,7 @@ while running:
                 gv.invertoryItems.append(gv.paper)
                 gv.paper_index=gv.invIndex
                 gv.invIndex = gv.invIndex + 1
+                item_taken()
             #close desk_room
             elif gv.rooms[5].close.rect.collidepoint(pos) and gv.index == 5:
                 gv.index = 0
@@ -211,13 +215,15 @@ while running:
                     gv.invertoryItems.append(gv.lemon_inv)
                     gv.lemon_index = gv.invIndex
                     gv.invIndex = gv.invIndex + 1
+                    item_taken()
             elif gv.index == 1 and event.type == pygame.MOUSEBUTTONUP:
-                if gv.key_pic.rect.collidepoint(pos) and gv.index==1:
+                if gv.key_pic.rect.collidepoint(pos) and gv.index==1 and gv.safe_open == True:
                     gv.flags['key'] = False
                     gv.key_inv.setLocation([100+gv.invIndex*190,645])
                     gv.invertoryItems.append(gv.key_inv)
                     gv.key_index = gv.invIndex
                     gv.invIndex = gv.invIndex + 1
+                    item_taken()
         f.opacity()
         f.update()
         gv.window.fill((255, 255, 255))

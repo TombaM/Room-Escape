@@ -5,13 +5,13 @@ import globalVariables as gv
 from loadImage import LoadImage
 import room
 
-def blit_alpha(target,source,location):
+def blit_alpha(target,source,location,opacity):
     x = location[0]
     y = location[1]
     temp = pygame.Surface((source.get_width(), source.get_height())).convert()
     temp.blit(target, (-x,-y))
     temp.blit(source, (0,0))
-    temp.set_alpha(gv._opacity)
+    temp.set_alpha(opacity)
     target.blit(temp, location)
 
 # def get_key():
@@ -91,14 +91,19 @@ def opacity():
     else:
         gv.opacity_message=0
 
+    if gv.flags['key']==True:
+        gv.opacity_key=255
+    else:
+        gv.opacity_key=0
+
 def changeBackground(side):
     if side == "left":
         if gv.index == 0:
-            gv.index = len(gv.rooms) - 2
+            gv.index = len(gv.rooms) - 3
         else:
             gv.index = gv.index - 1
     else:
-        if gv.index == len(gv.rooms) - 2:
+        if gv.index == len(gv.rooms) - 3:
             gv.index = 0
         else:
             gv.index = gv.index + 1
@@ -124,14 +129,14 @@ def update():
     gv.window.blit(gv.rooms[gv.index].image, gv.rooms[gv.index].rect)
     gv.rooms[gv.index].drawRoom()
 
-    # if gv.game_started == True:
+    if gv.game_started == True:
         # blitting arrows with opacity for every room
-    blit_alpha(gv.window, gv.leftArrow.image, gv.leftArrow.rect)
-    blit_alpha(gv.window, gv.rightArrow.image, gv.rightArrow.rect)
+        blit_alpha(gv.window, gv.leftArrow.image, gv.leftArrow.rect,gv._opacity)
+        blit_alpha(gv.window, gv.rightArrow.image, gv.rightArrow.rect,gv._opacity)
 
 
-    # drawing invertory icon for every room
-    gv.window.blit(gv.invertory.image, gv.invertory.rect)
+        # drawing invertory icon for every room
+        gv.window.blit(gv.invertory.image, gv.invertory.rect)
 
     if gv.flags["invertory"] == True:
         gv.invBar[0].drawInvertory()
@@ -165,5 +170,6 @@ def update():
                 gv.key=-1
         else:
             zoomImage("Images/safe_inside.png")
-            gv.window.blit(gv.key_pic.image, gv.key_pic.rect)
+            blit_alpha(gv.window, gv.key_pic.image, gv.key_pic.rect,gv.opacity_key)
+
     pygame.display.update()

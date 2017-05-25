@@ -45,6 +45,8 @@ password=[]
 
 game_started=False
 
+opacity_key = 255
+
 flags = {'picture' : False,
          'paper' : True,
          'message' : False,
@@ -54,7 +56,8 @@ flags = {'picture' : False,
          'fridge' : False,
          'lemon' : False,
          'safe' : False,
-         'matches' : True}
+         'matches' : True,
+         'key' : True }
 
 items = {}
 
@@ -73,5 +76,6 @@ match = LoadImage("Images/match.png", [1800, 645], 30, 30, 0)
 lemon_inv = LoadImage("Images/lemon.png", [1800, 645], 75, 75, 0)
 lemon = LoadImage("Images/lemon.png", [705, 420], 80, 70, 0)
 rotated = LoadImage("Images/pictureSafe.png", [1005, 515], 250, 175, -40)
-key_pic = LoadImage("Images/key.png", [530, 400], 50, 130, 0)
+key_pic = LoadImage("Images/key.png", [600, 380], 150, 80, -30)
+key_inv = LoadImage("Images/key.png", [1800, 645], 75, 75, 0)
 #100, 290, 480, 670, 860

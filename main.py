@@ -24,13 +24,15 @@ pygame.display.set_caption('Escape room')
 # pickUp.play()
 
 
-room = RoomOne("Images/room1.jpg", [600, 350])
+room = RoomStart("Images/room_start.jpg", [600, 350])
 gv.rooms.append(room)
 room = RoomTwo("Images/room2.jpg", [600, 350])
 gv.rooms.append(room)
 room = RoomThree("Images/room3.jpg", [600, 350])
 gv.rooms.append(room)
-room = RoomFour("Images/room4.jpg", [600, 350])
+room = RoomEnd("Images/room5.jpg", [600, 350])
+gv.rooms.append(room)
+room = RoomFour("Images/room4shelf.jpg", [600, 350])
 gv.rooms.append(room)
 room = RoomDesk("Images/desk_room.png", [600, 350])
 gv.rooms.append(room)
@@ -52,16 +54,17 @@ while running:
     for event in pygame.event.get():
         mx,my=pygame.mouse.get_pos()
         pos = pygame.mouse.get_pos()
+        # print mx,my
         if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
             running = False
         elif event.type == pygame.KEYDOWN:
             gv.key=event.key
-        # if event.type == pygame.MOUSEBUTTONUP and gv.game_started == False:
-        #     if mx >= 140 and mx <= 680 and my >= 555 and my <= 625:
-        #         gv.game_started = True
-        #         room = RoomOne("Images/room1.jpg", [600, 350])
-        #         gv.rooms[0] = room
-        #dragging_hammer hammer
+        if event.type == pygame.MOUSEBUTTONUP and gv.game_started == False:
+            if mx >= 140 and mx <= 680 and my >= 555 and my <= 625:
+                gv.game_started = True
+                room = RoomOne("Images/room1.jpg", [600, 350])
+                gv.rooms[0] = room
+        #dragging hammer
         if gv.dragging_hammer == True:
             gv.hammer.setLocation([mx,my])
             if event.type == pygame.MOUSEBUTTONUP:
@@ -78,7 +81,7 @@ while running:
             gv.match.setLocation([mx,my])
             if event.type == pygame.MOUSEBUTTONUP:
                 gv.dragging_match=False
-                if mx>=635 and mx<=645 and my>=302 and my<=320 and gv.index==0:
+                if mx>=635 and mx<=645 and my>=318 and my<=335 and gv.index==0:
                     gv.opacity_candle=0
                     gv.opacity_light_candle=255
 
@@ -88,7 +91,7 @@ while running:
             gv.table_paper.setLocation([mx,my])
             if event.type == pygame.MOUSEBUTTONUP:
                 gv.dragging_paper=False
-                if mx>=280 and mx<=940 and my>=60 and my<=500 and gv.index==4:
+                if mx>=280 and mx<=940 and my>=60 and my<=500 and gv.index==5:
                     gv.opacity_table_paper = 255
 
                 gv.paper.setLocation([100+(gv.paper_index)*190,645])
@@ -97,7 +100,7 @@ while running:
             gv.lemon_inv.setLocation([mx,my])
             if event.type == pygame.MOUSEBUTTONUP:
                 gv.dragging_lemon=False
-                if mx>=380 and mx<=920 and my>=70 and my<=490 and gv.index==4 and gv.opacity_table_paper==255:
+                if mx>=380 and mx<=920 and my>=70 and my<=490 and gv.index==5 and gv.opacity_table_paper==255:
                     gv.message_lemoned = True
                     if gv.opacity_candle==0:
                         gv.opacity_table_paper = 0
@@ -110,28 +113,28 @@ while running:
             if gv.opacity_picture==255:
                 gv.flags['pictureSafe'] = True
 
-        if event.type == pygame.MOUSEBUTTONUP:
+        if event.type == pygame.MOUSEBUTTONUP and gv.game_started == True:
 
-            if gv.rightArrow.rect.collidepoint(pos) and gv.index != len(gv.rooms) - 1:
+            if gv.rightArrow.rect.collidepoint(pos) and gv.index != len(gv.rooms) - 2:
                 f.changeBackground("right")
-            elif gv.leftArrow.rect.collidepoint(pos) and gv.index != len(gv.rooms) - 1:
+            elif gv.leftArrow.rect.collidepoint(pos) and gv.index != len(gv.rooms) - 2:
                 f.changeBackground("left")
             #bird picture
-            elif gv.rooms[0].picture.rect.collidepoint(pos) and gv.index == 0:
+            elif mx>=730 and mx<=945 and my>=120 and my<=280 and gv.index == 0:
                 gv.flags['picture'] = True
             #safe pressed
-            elif gv.rooms[1].safe.rect.collidepoint(pos) and gv.index == 1 and gv.safe_visible == True:
+            elif mx>=890 and mx<=980 and my>=195 and my<=265 and gv.index == 1 and gv.safe_visible == True:
                 if gv.safe_ind == 2:
                     gv.flags['safe'] = True
             #hammer taken
-            elif gv.rooms[3].hammer.rect.collidepoint(pos) and gv.index == 3:
+            elif gv.rooms[4].hammer.rect.collidepoint(pos) and gv.index == 4:
                 gv.flags['hammer'] = False
                 gv.hammer.setLocation([100+gv.invIndex*190,645])
                 gv.invertoryItems.append(gv.hammer)
                 gv.hammer_index=gv.invIndex
                 gv.invIndex = gv.invIndex + 1
             #matches taken
-            elif gv.rooms[3].matches.rect.collidepoint(pos) and gv.index == 3:
+            elif gv.rooms[4].matches.rect.collidepoint(pos) and gv.index == 4:
                 gv.flags['matches'] = False
                 gv.matches.setLocation([100+gv.invIndex*190,645])
                 gv.invertoryItems.append(gv.matches)
@@ -145,11 +148,16 @@ while running:
                 gv.paper_index=gv.invIndex
                 gv.invIndex = gv.invIndex + 1
             #close desk_room
-            elif gv.rooms[4].close.rect.collidepoint(pos) and gv.index == 4:
+            elif gv.rooms[5].close.rect.collidepoint(pos) and gv.index == 5:
                 gv.index = 0
+            elif gv.rooms[4].close.rect.collidepoint(pos) and gv.index == 4:
+                gv.index = 3
             #enter desk room
-            elif gv.rooms[0].desk.rect.collidepoint(pos) and gv.index == 0:
+            elif mx>=595 and mx<=1075 and my>=400 and my<=420 and gv.index == 0:
                 gv.index = len(gv.rooms) - 1
+            #enter basement
+            elif mx>=820 and mx<=1015 and my>=65 and my<=545 and gv.index == 3:
+                gv.index = len(gv.rooms) - 2
             #paper pressed after storage
             elif gv.paper.rect.collidepoint(pos):
                 # gv.flags['message'] = True
@@ -177,9 +185,9 @@ while running:
                 gv.flags['safe'] = False
             #opening fridge
             elif gv.index==2 and event.type == pygame.MOUSEBUTTONUP:
-                pos = pygame.mouse.get_pos()
+                # pos = pygame.mouse.get_pos()
                 # hardcoded part, if we think of something better, will be implemented
-                if pos[0]>=940 and pos[0]<=970 and pos[1]>=250 and pos[1]<=415:
+                if mx>=1040 and pos[0]<=1100 and pos[1]>=125 and pos[1]<=340:
                     gv.flags['fridge']=True
                     #drawing lemon before it is taken
                     if gv.lemon_ind == 0:
@@ -191,6 +199,13 @@ while running:
                     gv.lemon_inv.setLocation([100+gv.invIndex*190,645])
                     gv.invertoryItems.append(gv.lemon_inv)
                     gv.lemon_index = gv.invIndex
+                    gv.invIndex = gv.invIndex + 1
+            elif gv.index == 1 and event.type == pygame.MOUSEBUTTONUP:
+                if gv.key_pic.rect.collidepoint(pos) and gv.index==1:
+                    gv.flags['key'] = False
+                    gv.key_inv.setLocation([100+gv.invIndex*190,645])
+                    gv.invertoryItems.append(gv.key_inv)
+                    gv.key_index = gv.invIndex
                     gv.invIndex = gv.invIndex + 1
         f.opacity()
         f.update()

@@ -1,9 +1,7 @@
 import pygame, pygame.font, pygame.event, pygame.draw, string
 from pygame.locals import *
-import copy
 import globalVariables as gv
 from loadImage import LoadImage
-import room
 
 def blit_alpha(target,source,location,opacity):
     x = location[0]
@@ -165,7 +163,7 @@ def update():
 
     elif gv.flags['fridge'] == True:
         zoomImage("Images/fridge.png")
-        room.blit_alpha(gv.window, gv.lemon.image, gv.lemon.rect,gv.opacity_lemon)
+        blit_alpha(gv.window, gv.lemon.image, gv.lemon.rect,gv.opacity_lemon)
 
     elif gv.flags['safe'] == True:
         if gv.safe_open == False:
@@ -178,5 +176,5 @@ def update():
         else:
             zoomImage("Images/safe_inside.png")
             blit_alpha(gv.window, gv.key_pic.image, gv.key_pic.rect,gv.opacity_key)
-
+            gv.window.blit(gv.nail.image, gv.nail.rect)
     pygame.display.update()

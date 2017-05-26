@@ -79,12 +79,6 @@ class RoomFour(LoadImage):
     #self.barrel = LoadImage("Images/barrel.png", [775, 470], 220, 330, 0)
     self.bucket = LoadImage("Images/bucket.png", [240, 555], 150, 135, 0)
     self.shelf = LoadImage("Images/old_shelf.png", [1020, 370], 350, 670, 0)
-    #self.stool = LoadImage("Images/stool.png", [620, 600], 220, 150, 0)
-    #self.sack1 = LoadImage("Images/sack.png", [90, 535], 170, 220, 0)
-    #self.sack2 = LoadImage("Images/sack.png", [140, 510], 170, 220, 0)
-    #self.broom = LoadImage("Images/broom.png", [270, 400], 290, 400, 0)
-    #self.chest = LoadImage("Images/chest.png", [495, 510], 350, 190, 0)
-    #self.ham = LoadImage("Images/ham.png", [400, 105], 150, 200, 0)
     self.hammer = LoadImage("Images/hammer.png", [250, 540], 90, 90, 0)
     self.matches = LoadImage("Images/matches.png", [1040, 635], 55, 55, 25)
     self.close = LoadImage("Images/back.png", [1170, 30], 50, 50, 0)
@@ -95,17 +89,9 @@ class RoomFour(LoadImage):
   def drawRoom(self):
       blit_alpha(gv.window, self.hammer.image, self.hammer.rect,gv.opacity_hammer)
       blit_alpha(gv.window, self.matches.image, self.matches.rect,gv.opacity_matches)
-      #blit_alpha(gv.window, self.broom.image, self.broom.rect,255)
       blit_alpha(gv.window, self.bucket.image, self.bucket.rect,255)
       blit_alpha(gv.window, self.shelf.image, self.shelf.rect,255)
-      self.drawObject(self.close)
-    #   self.drawObject(self.ham)
-    #   self.drawObject(self.chest)
-    #   self.drawObject(self.sack2)
-    #   self.drawObject(self.sack1)
-    # #   self.drawObject(self.shelf)
-    #   self.drawObject(self.barrel)
-    #   self.drawObject(self.stool)
+      blit_alpha(gv.window, self.close.image, self.close.rect,255)
 
 class RoomDesk(LoadImage):
     def __init__(self, image, location):

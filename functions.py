@@ -12,14 +12,6 @@ def blit_alpha(target,source,location,opacity):
     temp.set_alpha(opacity)
     target.blit(temp, location)
 
-# def get_key():
-#   while 1:
-#     event = pygame.event.poll()
-#     if event.type == KEYDOWN:
-#       return event.key
-#     else:
-#       pass
-
 def display_box(message,password):
     fontobject = pygame.font.Font(None,22)
     fontobjectpass = pygame.font.Font(None,25)
@@ -171,6 +163,9 @@ def update():
             pom=ask("Type safe password and press enter")
             if gv.key == K_RETURN:
                 if pom=="4295" or pom=="4 2 9 5":
+                    enterPin = pygame.mixer.Sound('Music/openSafe1.ogg')
+                    enterPin.play()
+                    pygame.time.delay(4000)
                     gv.safe_open = True
                 gv.key=-1
         else:

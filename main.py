@@ -14,19 +14,6 @@ pygame.mixer.music.load(music)
 pygame.mixer.music.set_volume(0.3)
 pygame.mixer.music.play(-1)
 
-
-# matchLit = pygame.mixer.Sound('Music/match.ogg')
-# matchLit.play()
-
-# enterPin = pygame.mixer.Sound('Music/openSafe1.ogg')
-# enterPin.play()
-# openSafe = pygame.mixer.Sound('Music/openSafe2.ogg')
-# openSafe.play()
-
-# pictureFall = pygame.mixer.Sound('Music/pictureFall.ogg')
-# pictureFall.play()
-
-
 #pravi se objekat za zvuk i ovo .play() se poziva kad se klikne na vrata
 
 def item_taken():
@@ -55,6 +42,7 @@ pygame.display.flip()
 
 mx,my=pygame.mouse.get_pos()
 running = True
+
 while running:
 
     if gv.safe_visible == True:
@@ -78,6 +66,9 @@ while running:
         if gv.dragging_hammer == True:
             gv.hammer.setLocation([mx,my])
             if event.type == pygame.MOUSEBUTTONUP:
+                pictureFall = pygame.mixer.Sound('Music/pictureFall.ogg')
+                # pygame.mixer.music.set_volume(0.1)
+                pictureFall.play()
                 gv.dragging_hammer=False
                 if mx>=800 and mx<=1010 and my>=135 and my<=275 and gv.index==1:
                     gv.flags['pictureSafe']=False
@@ -198,8 +189,10 @@ while running:
                 gv.dragging_hammer = True
             #start to drag match
             elif gv.matches.rect.collidepoint(pos) and pygame.MOUSEBUTTONUP:
+                matchLit = pygame.mixer.Sound('Music/match.ogg')
+                matchLit.play()
                 gv.dragging_match = True
-                #dragging lemon
+            #dragging lemon
             elif gv.lemon_inv.rect.collidepoint(pos) and pygame.MOUSEBUTTONUP:
                 gv.dragging_lemon = True
             #'X' pressed
@@ -210,7 +203,10 @@ while running:
                 gv.flags['invertory'] = False
                 gv.flags['message'] = False
                 gv.flags['pictureSafe'] = False
-                gv.flags['safe'] = False
+                if gv.flags['safe'] == True:
+                    openSafe = pygame.mixer.Sound('Music/openSafe2.ogg')
+                    openSafe.play()
+                    gv.flags['safe'] = False
             #opening fridge
             elif gv.index==2 and event.type == pygame.MOUSEBUTTONUP:
                 # pos = pygame.mouse.get_pos()

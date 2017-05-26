@@ -44,6 +44,7 @@ key = -1
 password=[]
 
 game_started=False
+end_game=False
 
 opacity_key = 255
 dragging_key = False
@@ -79,4 +80,6 @@ lemon = LoadImage("Images/lemon.png", [705, 420], 80, 70, 0)
 rotated = LoadImage("Images/pictureSafe.png", [1005, 515], 250, 175, -40)
 key_pic = LoadImage("Images/key.png", [600, 355], 100, 150, 0)
 key_inv = LoadImage("Images/key.png", [1800, 645], 75, 75, 0)
+small_key = LoadImage("Images/key.png", [1800, 645], 20, 40, -90)
+end = LoadImage("Images/end.png", [600, 350], 900, 200, 0)
 #100, 290, 480, 670, 860

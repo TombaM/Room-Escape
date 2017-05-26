@@ -87,7 +87,7 @@ class RoomFour(LoadImage):
     #self.ham = LoadImage("Images/ham.png", [400, 105], 150, 200, 0)
     self.hammer = LoadImage("Images/hammer.png", [250, 540], 90, 90, 0)
     self.matches = LoadImage("Images/matches.png", [1040, 635], 55, 55, 25)
-    self.close = LoadImage("Images/close.png", [1170, 30], 50, 50, 0)
+    self.close = LoadImage("Images/back.png", [1170, 30], 50, 50, 0)
 
   def drawObject(self, obj):
       self.image.blit(obj.image, obj.rect)
@@ -110,7 +110,7 @@ class RoomFour(LoadImage):
 class RoomDesk(LoadImage):
     def __init__(self, image, location):
         LoadImage.__init__(self, image, location, 1200, 700, 0)
-        self.close = LoadImage("Images/close.png", [1170, 30], 50, 50, 0)
+        self.close = LoadImage("Images/back.png", [1170, 30], 50, 50, 0)
         self.candle_on = LoadImage("Images/candle_desk_on.png", [150, 120], 220, 170, 0)
         self.candle_off = LoadImage("Images/candle_desk_off.png", [150, 120], 220, 170, 0)
         self.message_empty = LoadImage("Images/message-empty.png", [600, 320], 400, 370, 0)

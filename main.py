@@ -82,8 +82,6 @@ while running:
                     gv.opacity_candle=0
                     gv.opacity_light_candle=255
 
-                gv.matches.setLocation([100+(gv.matches_index)*190,645])
-
         elif gv.dragging_paper == True:
             gv.table_paper.setLocation([mx,my])
             if event.type == pygame.MOUSEBUTTONUP:
@@ -105,14 +103,16 @@ while running:
                 gv.lemon_inv.setLocation([100+(gv.lemon_index)*190,645])
 
         elif gv.dragging_key == True:
-            gv.key_inv.setLocation([mx,my])
+            gv.small_key.setLocation([mx,my])
             if event.type == pygame.MOUSEBUTTONUP:
                 # gv.dragging_key=False
                 if mx>=310 and mx<=330 and my>=285 and my<=340 and gv.index==3:
+                    gv.game_started = False
+                    gv.end_game = True
                     unlockingDoor = pygame.mixer.Sound('Music/unlock_door.ogg')
                     unlockingDoor.play()
+                    pygame.time.delay(5000)
 
-                gv.matches.setLocation([100+(gv.matches_index)*190,645])
         # Cheking if picture is "pressed" so it should be zoomed
         elif gv.rooms[1].pictureSafe.rect.collidepoint(pos) and gv.index==1 and event.type == pygame.MOUSEBUTTONUP:
             #only if it is visible we should zoom
@@ -152,7 +152,7 @@ while running:
                 gv.invIndex = gv.invIndex + 1
                 item_taken()
             #paper taken
-            elif gv.rooms[0].paper.rect.collidepoint(pos) and gv.index == 0 and gv.flags['paper'] == True:
+            elif gv.index == 0 and gv.rooms[0].paper.rect.collidepoint(pos) and gv.flags['paper'] == True:
                 gv.flags['paper'] = False
                 gv.paper.setLocation([100+gv.invIndex*190,645])
                 gv.invertoryItems.append(gv.paper)

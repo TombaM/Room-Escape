@@ -129,6 +129,9 @@ def update():
     gv.window.blit(gv.rooms[gv.index].image, gv.rooms[gv.index].rect)
     gv.rooms[gv.index].drawRoom()
 
+    if gv.end_game == True:
+        gv.window.blit(gv.end.image, gv.end.rect)
+
     if gv.game_started == True:
         # blitting arrows with opacity for every room
         if gv.index != 4 and gv.index != 5:
@@ -144,6 +147,9 @@ def update():
 
     if gv.dragging_match == True:
         gv.window.blit(gv.match.image, gv.match.rect)
+
+    if gv.dragging_key == True and gv.end_game == False:
+        gv.window.blit(gv.small_key.image, gv.small_key.rect)
 
     if gv.dragging_paper == True:
         gv.window.blit(gv.table_paper.image, gv.table_paper.rect)

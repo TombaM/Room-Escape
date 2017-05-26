@@ -77,6 +77,6 @@ match = LoadImage("Images/match.png", [1800, 645], 30, 30, 0)
 lemon_inv = LoadImage("Images/lemon.png", [1800, 645], 75, 75, 0)
 lemon = LoadImage("Images/lemon.png", [705, 420], 80, 70, 0)
 rotated = LoadImage("Images/pictureSafe.png", [1005, 515], 250, 175, -40)
-key_pic = LoadImage("Images/key.png", [600, 380], 150, 80, 30)
+key_pic = LoadImage("Images/key.png", [600, 355], 100, 150, 0)
 key_inv = LoadImage("Images/key.png", [1800, 645], 75, 75, 0)
 #100, 290, 480, 670, 860

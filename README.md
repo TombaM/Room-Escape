@@ -26,8 +26,8 @@ Potrebni alati i pokretanje igre:
   
  Autori:
  
-  Strahinja Stanojević 207/2014
-  
-  Tomislav Milovanović 134/2014 
-  
   Ana Bajić 71/2014 ana.bajic13@gmail.com
+ 
+  Strahinja Stanojević 207/2014 strahinjastanojevic@rocketmail.com
+  
+  Tomislav Milovanović 134/2014 tomislav.milovannovic@gmail.com

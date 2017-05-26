@@ -14,6 +14,19 @@ pygame.mixer.music.load(music)
 pygame.mixer.music.set_volume(0.3)
 pygame.mixer.music.play(-1)
 
+
+# matchLit = pygame.mixer.Sound('Music/match.ogg')
+# matchLit.play()
+
+# enterPin = pygame.mixer.Sound('Music/openSafe1.ogg')
+# enterPin.play()
+# openSafe = pygame.mixer.Sound('Music/openSafe2.ogg')
+# openSafe.play()
+
+# pictureFall = pygame.mixer.Sound('Music/pictureFall.ogg')
+# pictureFall.play()
+
+
 #pravi se objekat za zvuk i ovo .play() se poziva kad se klikne na vrata
 
 def item_taken():

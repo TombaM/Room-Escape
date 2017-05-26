@@ -66,11 +66,13 @@ while running:
         if gv.dragging_hammer == True:
             gv.hammer.setLocation([mx,my])
             if event.type == pygame.MOUSEBUTTONUP:
-                pictureFall = pygame.mixer.Sound('Music/pictureFall.ogg')
-                # pygame.mixer.music.set_volume(0.1)
-                pictureFall.play()
+#                 pictureFall = pygame.mixer.Sound('Music/pictureFall.ogg')
+#                 pictureFall.play()
                 gv.dragging_hammer=False
                 if mx>=800 and mx<=1010 and my>=135 and my<=275 and gv.index==1:
+                    pictureFall = pygame.mixer.Sound('Music/pictureFall.ogg')
+                    pictureFall.play()
+            
                     gv.flags['pictureSafe']=False
                     gv.opacity_picture=0
                     gv.opacity_rotated=255
